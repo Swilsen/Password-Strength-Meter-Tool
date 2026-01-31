@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="src/PPlogo.png">
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,200&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>How Secure Is Your Password</title>
+    <script defer src="script.js"></script>
+    <script defer src="app.js"></script>
+
+    <div style="text-align: center;">
+        <span style="display: inline-flex;">
+            <img src="src/PPlogo.png" alt="Logo" class="logo" style="width: 75px; height: 100px;">
+            <h1 class="title sub-title" style="margin-left: 10px;">
+                Password Strength Tester
+            </h1>
+        </span>
+    </div>
+
+</head>
+
+<body>
+    <!-- Password container -->
+    <section class="section-center">
+        <div class="section-center-div">
+            <p id="strength-meter-percentage" style="font-size: 24px;">0/100</p>
+            <div class="strength-meter" id="strength-meter"></div>
+            <input class="password-input" id="password-input" value="" placeholder="Enter a password to test"
+                type="text" autofocus aria-laballedby="password">
+            <button class="submit-button" value="submit" onclick="updateStrengthMeter()">
+                <span class="material-symbols-outlined">
+                    lock
+                </span>
+                Submit
+            </button>
+            <p id="leaked-password" hidden>
+                Your password has been leaked online!
+            </p>
+            <span class="time-to-crack">
+                <p id="time-to-crack"></p>
+            </span>
+        </div>
+    </section>
+
+    <section class="section-center">
+        <!-- Password Checkbox -->
+        <div class="pass-container">
+            <h2 class="title">Password Criteria</h2>
+
+            <div class="feedback-check">
+                <span id="length-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="length-feedback-input">
+                    minimum 8-12 characters
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="lowercase-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="lowercase-feedback-input">
+                    a lowercase letter
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="uppercase-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="uppercase-feedback-input">
+                    an uppercase letter
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="digit-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="digit-feedback-input">
+                    a digit
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="symbol-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="symbol-feedback-input">
+                    a symbol
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="repeat-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="repeat-feedback-input">
+                    should contain few repeating characters
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="sequence-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="sequence-feedback-input">
+                    should not contain alphanumerical sequences
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="pattern-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="pattern-feedback-input">
+                    should not reuse identical substrings
+                </span>
+            </div>
+            <div class="feedback-check">
+                <span id="close-key-feedback-icon" class="material-symbols-outlined">
+                    minimize
+                </span>
+                <span id="close-key-feedback-input">
+                    should not be based on keyboard patterns
+                </span>
+            </div>
+        </div>
+        <!-- Weaknesses -->
+        <div class="pass-container" id="weakness-error-container">
+            <h2 class="title">Weaknesses</h2>
+            <div class="feedback-error">
+                <p id="no-apparent-weakness"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="length-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="uppercase-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="lowercase-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="digit-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="symbol-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="repeat-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="sequence-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="pattern-feedback-error"></p>
+            </div>
+            <div class="feedback-error">
+                <p id="close-key-feedback-error"></p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="section-center-div">
+            <h6 class="title main tiny" style="text-align: center;"></h6>
+            <p class="further-reading">Read more about the best password strength practices, why maintaining good
+                password hygiene is important,
+                and the potential consequences of poor password management below.
+            </p>
+            <div class="arrow">
+                <a href="#pass"><img class="icon-down" src="src/down-arrow.png" alt="down arrow"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="section-left" id="pass">
+        <div>
+            <h1 class="title sub-title">Best Practices ✍️</h1>
+            <!-- Length, Complexity, Uniqueness -->
+            <section class="section-center">
+                <div class="column">
+                    <h3 class="title">Length</h3>
+                    <p class="section-left-text">Longer passwords are indicative to good password strength.</p>
+                    <p class="section-left-text">Aim for longer passwords when able, as each additional character
+                        will increase your password strength exponentially.</p>
+                    <p class="section-left-text">A password length of 16-20 characters is considered very strong
+                        and have a miniscule chance of being hacked.
+                    </p>
+                </div>
+                <div class="column">
+                    <h3 class="title">Complexity</h3>
+                    <p class="section-left-text">Use lowercase and uppercase letters, digits, and symbols when making passwords.</p>
+                    <p class="section-left-text">A varied character set improves password strength by increasing the
+                        amount of different characters found in the password. 
+                    </p>
+                    <p class="section-left-text">This makes it harder to guess as the password's
+                        constraints are unknown to the attacker.</p>
+                </div>
+                <div class="column">
+                    <h3 class="title">Uniqueness</h3>
+                    <p class="section-left-text">Do NOT reuse passwords!</p>
+                    <p class="section-left-text">Unknown to you, password leaks might occur to databases hosting some
+                        of your passwords.</p>
+                    <p class="section-left-text">Repeating old passwords puts your information at risk, as your passwords
+                        are now known to have been used previously.</p>
+                    <p class="section-left-text">Use unique passwords for each application or device.</p>
+                </div>
+            </section>
+            <h2 class="title para-title">Things to Bear in Mind</h2>
+            <ul class="section-left-text">
+                <li>Try to use passphrases when making passwords, with four to five individual words separated by white spaces.
+                It will make the password much harder to crack and a lot easier to remember.</li>
+                </br></br>
+
+                <li>Find a nice balance between long and complex passwords. Very secure passwords are ideal, but if you have to remake them
+                every week because they are hard to remember, you will start a tedious and annoying relationship with passwords.</li>
+            </ul>
+        <h1 class="title sub-title">Multi-Factor Authentication and Password Managers 🔐</h1>
+            <p class="section-left-text">
+                In today's society, online threats evolve as quickly as technology itself.
+                People with malicious intent are more sophisticated than before. It is therefore important
+                to protect yourself online and have a strong password. Two essential tools that help you enhance your
+                protection
+                and add more layers of protection are Multi-Factor Authentication (MFA) and Password Managers.
+            </p>
+            <section class="section-center">
+                <div class="column">
+                    <h3 class="title para-title;" style="text-align: center;">What Is Multifactor Authentication</h3>
+                    <p class="section-left-text">
+                        Multifactor Authentication (MFA) adds an extra layer of protection to ensure that compromising a password is
+                        not enough to get authentication to user accounts. It is widely supported and is offered as a free security option.
+                        </br></br>
+                        However, not all sites do offer MFA, but it is strongly recommended to use when possible. After a user has 
+                        entered the correct username and password, the user will immediately be required to provide more information.
+                    </p>
+                </div>
+                <img src="src/multifactor-authentificaton.png" alt="MFA" width="418px" height="418px" style="margin-top: 10px;">
+            </section>
+            <p style="color: white; font-size: 14px; text-align: center; margin-left: 420px;">Image from https://www.nist.gov/image/multifactor-authentificatonpng</p>
+            <h3 class="title para-title">Methods of Confirming Your Identity</h3>
+                <ul class="section-left-text"><li>Authentication using biometrics</li></ul>
+                <ul class="section-left-text"><li>A prompt on a trusted advice</li></ul>
+                <ul class="section-left-text"><li>A code sent to a phone or app</li></ul>
+            
+            <h3 class="title para-title">What Is a Password Manager and Why Is It Used? </h3>
+                <p class="section-left-text">A password Manager is a tool that can help you generate strong and unique passwords
+                    while storing them in an encrypted database. eases you from remembering all your passwords.  Potentially, all you need to
+                    remember is the master password for logging into the password manager.
+                    </br></br>
+                    This has both benefits and drawbacks as it makes
+                    it easier for users to not remember all unique passwords for each site, and helps you keep a healthy password hygiene.
+                    On the other half it leads to a single point of failure as all passwords are stored in a single database and user. </p>
+        </div>
+    </section>
+    <!-- Section 3 -->
+    <section class="section-left">
+        <h1 class="title sub-title">Attack Methods 🕵️‍♂️</h1>
+        <div class="section-center" style="width: 70%; margin-left: 20%;">
+            <div class="text-container">
+                <p class="text">
+                    When considering the actual effect of password strength, it is based on the premise that all
+                    passwords
+                    can be broken, meaning that it is not a question about if it can happen, but when it will.
+                </br></br>
+                </p>
+                <p class="text">
+                    
+                </p>
+                <img src="src/AttackMethod1.jpg" alt="Attack" width="600px" height="400px">
+                <p style="color: white; font-size: 14px;">Image from https://portinos-cloudfront.portinos.com/wp-content/uploads/2016/01/hires.jpg</p>
+            </div>
+            <div class="rectangle">
+                <div class="pair-one">
+                    <h2 class="title">Brute-Force Attack:</h2>
+                    <p class="section-left-text">Systematically guesses various password combinations.</p>
+                    <p class="section-left-text">These attacks are simple, only requiring spending computational
+                        power to launch an attack, but takes a lot of time and cannot be done offline.
+                    
+                    </br></br>
+                    </p>
+                </div>
+                <div class="pair-one">
+                    <h2 class="title">Dictionary Attack:</h2>
+                    <p class="introduction-text">A type of brute-force attack which uses a preprepared dictionary to base the guesses of.</p>
+                    <p class="introduction-text">Dictionary attacks threatens the use of unmodified trivial and simple passwords.
+                    </br></br>
+                    </p>
+                </div>
+            </div>
+            <div class="rectangle">
+                <div class="pair-two">
+                    <h2 class="title">Botnets</h2>
+                    <p class="introduction-text">A possibly vast network of infected computers.</p>
+                    <p class="introduction-text">These networks controlled by an attacker allow for many more attempts at guessing passwords, reducing the
+                        estimated time it takes for a password to break.
+                    </br></br>
+                    </p>
+                </div>
+                <div class="pair-two">
+                    <h2 class="title">List-Based Attack:</h2>
+                    <p class="introduction-text">A type of brute-force attack using lists of previously leaked passwords.</p>
+                    <p class="introduction-text">Aims to gain an advantage by exploiting previous information
+                        about user password hygiene.
+                    </br></br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="section-left">
+        <div class="section-left">
+            <h1 class="title sub-title">Consequences of Poor Password Hygiene ❌</h1>
+            <p class="section-left-text">In reality, most data breaches occur due to phishing attacks or similar means by fooling victims into
+                giving up sensitive information. This is due to these attacks being much easier to execute, and on a large enough scale there is a very
+                high success rate.
+            </p>
+            <p class="section-left-text">However, some of the possible consequences of using weak passwords are similar in effect.
+            </p>
+                <section class="section-center">
+                    <div class="column">
+                        <h3 class="title para-title;" style="text-align: center;">Monetary</h3>
+                        <p class="section-left-text">
+                            Accounts taken over by attackers can issue fraudulent purchases, which can be very costly for the victims of such attacks.
+                        </p>
+                        <p class="section-left-text">
+                            Banks and other relevant financial bodies should be informed in the event of a registered password breach in order to
+                            freeze funds so that they cannot be transferred.
+                        </p>
+                        </br></br>
+                    </div>       
+                    <div class="column">
+                        <h3 class="title para-title;" style="text-align: center;">Psychological</h3>
+                        <p class="section-left-text">
+                            Identity theft is broader in definition, but generally concerns the implications of an attacker gaining unauthorized
+                            access to a victim's credentials.
+                        </p>
+                        <p class="section-left-text">
+                            Losing control over accounts and information, or being the victim of stalking or blackmailing can cause feelings of distress and helplessness in the victim,
+                            and possibly cause trauma.
+                        </p>
+                        </br></br>
+                    </div>
+                </section>     
+        </div>
+    </section>
+    <section class="footer">
+        <h6 class="title" style="text-align: center;">Copyright ©2024 Passlock Pioneers</h3>
+    </section>
+</body>
+
+</html>
