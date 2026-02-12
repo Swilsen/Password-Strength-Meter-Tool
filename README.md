@@ -9,11 +9,13 @@ Password strength is based on three things, heuristic factors, binary entropy, a
 # Note
 Due to file size restrictions, I was unable to upload the rockyou dataset which was used in the program in order to filter the user input for previously leaked passwords. To use this utility then simply download a similar .txt file into the same repository as the other files. The filename might have to be changed in order to be correctly fetched by the rockyouWeakness function in the script.js file.
 
-![image alt](https://github.com/Swilsen/Password-Strength-Meter-Tool/blob/main/ApplicationImages/StrengthMeterOverview.png?raw=true)
-The image shows:
-1. Password score calculated in entropy.
-2. Strength meter indicating strength by moving and changing color.
-3. Noting if the password is found in the rockyou dataset of leaked passwords.
-4. Average time to guess the password calculated by entropy score and modern cpu processing speeds.
-5. Password criteria checklist to promote the use of a varied character set.
-6. Feedback on apparent weaknesses.
+### Figure 1 - Strength Meter Overview
+[![Figure 1 – Strength Meter Overview](ApplicationImages/StrengthMeterOverview.png)](ApplicationImages/StrengthMeterOverview.png)
+**Description:**
+Figure 1 demonstrates:
+1. Entropy-based password scoring
+2. Dynamic strength meter visualization
+3. RockYou dataset lookup
+4. Estimated cracking time
+5. Character requirement checklist
+6. Weakness feedback analysis
