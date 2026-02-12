@@ -5,3 +5,6 @@ The project is mainly split into two directions. The first is the mathematical c
 
 # Overview
 Password strength is based on three things, heuristic factors, binary entropy, and reductions in password score based on predictability and the use of patterns.
+
+# Note
+Due to file size restrictions, I was unable to upload the rockyou dataset which was used in the program in order to filter the user input for previously leaked passwords. To use this utility then simply download a similar .txt file into the same repository as the other files. The filename might have to be changed in order to be correctly fetched by the rockyouWeakness function in the script.js file.
