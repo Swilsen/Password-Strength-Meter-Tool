@@ -19,3 +19,16 @@ Figure 1 demonstrates:
 4. Estimated cracking time
 5. Character requirement checklist
 6. Weakness feedback analysis
+
+### Figure 2 - Best Practices Reccomendations
+[![Figure 2 – Best Practices](ApplicationImages/BestPractices.png)](ApplicationImages/BestPractices.png)
+**Description:**
+Figure 2 demonstrates:
+Clear and concise guidelines for password creation, directed at password length, complexity and uniquenesss.
+
+
+### Figure 3 - Multi-Factor Authentication and Password Managers
+[![Figure 3 – MFA and Password Managers](ApplicationImages/MFA.png)](ApplicationImages/MFA.png)
+**Description:**
+Figure 3 demonstrates:
+Shows the importance and usefulness of multi-factor authentication as a security measure, and how password managers can help offload the burden of remembering long and complex passwords.
