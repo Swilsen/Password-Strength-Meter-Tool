@@ -8,3 +8,5 @@ Password strength is based on three things, heuristic factors, binary entropy, a
 
 # Note
 Due to file size restrictions, I was unable to upload the rockyou dataset which was used in the program in order to filter the user input for previously leaked passwords. To use this utility then simply download a similar .txt file into the same repository as the other files. The filename might have to be changed in order to be correctly fetched by the rockyouWeakness function in the script.js file.
+
+![image alt](https://github.com/Swilsen/Password-Strength-Meter-Tool/blob/main/ApplicationImages/StrengthMeterOverview.png?raw=true)
